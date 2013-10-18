@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+    <form-beans>
+        <form-bean name="LoginForm" type="com.infotech.web.struts.action.LoginForm"/>
+		<form-bean name="AssetForm" type="com.infotech.web.struts.action.AssetForm"/>
+		<form-bean name="UserForm" type="com.infotech.web.struts.action.UserForm"/>
+		<form-bean name="PasswordForm" type="com.infotech.web.struts.action.PasswordForm"/>
+		<form-bean name="LocationForm" type="com.infotech.web.struts.action.LocationForm"/>
+		<form-bean name="DelForm" type="com.infotech.web.struts.action.DelForm"/>
+		<form-bean name="UserForgetPasswordForm" type="com.infotech.web.struts.action.UserForgetPasswordForm"/>
+		<form-bean name="UpdateForm" type="com.infotech.web.struts.action.UpdateForm"/>
+		<form-bean name="AssignAssetForm" type="com.infotech.web.struts.action.AssignAssetForm"/>
+		<form-bean name="PForm" type="com.infotech.web.struts.action.PForm"/>
+		<form-bean name="PrintForm" type="com.infotech.web.struts.action.PrintForm"/>
+	</form-beans>
+    
+    <global-exceptions>
+    
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="welcome"  path="/Welcome.do"/>
+    </global-forwards>
+
+    <action-mappings>
+    
+        <action input="/pages/Login.jsp" name="LoginForm" path="/AssetSelection" scope="request" type="com.infotech.web.struts.action.LoginAction">
+			<set-property property="cancellable" value="true"/>
+			<forward name="success" path="/pages/Details.jsp" />
+            <forward name="failure" path="/pages/Failure.jsp" />
+        </action>
+        
+        <action input="/pages/ForgotPassword.jsp" name="UserForgetPasswordForm" path="/ForgetPassword" scope="session" type="com.infotech.web.struts.action.UserForgetPasswordAction">
+			<set-property property="cancellable" value="true"/>
+			<forward name="success" path="/pages/Login.jsp" />
+            <forward name="failure" path="/pages/Failure.jsp" />
+        </action>
+        
+        <action input="/pages/Details.jsp" path="/AssetDetails" name="UserForm" scope="session" type="com.infotech.web.struts.action.AssetDetailsAction">
+			<set-property property="cancellable" value="true"/>
+			<forward name="ddetails" path="/pages/Assets.jsp" />
+            <forward name="failure" path="/pages/Failure.jsp" />
+        </action>
+
+		
+		<action input="/pages/Details.jsp"  parameter="method" name="UserForm" path="/Admin" scope="session" type="com.infotech.web.struts.action.AdminAction">
+			<set-property property="cancellable" value="true"/>
+            <forward name="addUser" path="/pages/AddUser.jsp" />
+            <forward name="delUser" path="/pages/DelUser.jsp" />
+			<forward name="addLocation" path="/pages/AddLocation.jsp" />
+			<forward name="addAsset" path="/pages/AddAsset.jsp" />
+			<forward name="changePassword" path="/pages/ChangePassword.jsp" />
+			<forward name="assignAsset" path="/pages/AssignAsset.jsp" />
+			<forward name="unassignAssets" path="/pages/UnAssignAssets.jsp" />
+        </action>
+        
+        <action input="/pages/Assets.jsp" parameter="method" name="UserForm" path="/UpdateDelete" scope="session" type="com.infotech.web.struts.action.UpdateDeleteAction">
+			<set-property property="cancellable" value="true"/>
+	        <forward name="update" path="/pages/Update.jsp" />
+            <forward name="delete" path="/pages/Delete.jsp" />
+        </action>
+
+		 <action input="/pages/Assets.jsp" path="/printAction" name="PForm" scope="session" type="com.infotech.web.struts.action.PAction">
+		    <set-property property="cancellable" value="true"/>
+            <forward name="print" path="/pages/Print.jsp" />
+		 </action>
+        
+        <action input="/pages/Print.jsp" name="PrintForm" path="/printAction" scope="session" type="com.infotech.web.struts.action.PrintAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="success" path="/pages/user.jsp" />
+        </action>
+        
+
+		<action input="/pages/AddUser.jsp" path="/AddUser" name="UserForm" scope="request" type="com.infotech.web.struts.action.AddUserAction">
+			<set-property property="cancellable" value="true"/>
+            <forward name="add" path="/pages/Details.jsp" />
+            <forward name="cancel" path="/pages/Details.jsp" />
+			<forward name="reload" path="/pages/AddUser.jsp" />
+        </action>
+
+		<action input="/pages/DelUser.jsp" path="/DelUser" name="DelForm" scope="session" type="com.infotech.web.struts.action.DelUserAction">
+			<set-property property="cancellable" value="true"/>
+            <forward name="del" path="/pages/Details.jsp" />
+			<forward name="cancel" path="/pages/Details.jsp" />
+        </action>
+
+		<action input="/pages/AddLocation.jsp" path="/AddLocation" name="LocationForm" scope="session" type="com.infotech.web.struts.action.AddLocationAction" >
+			<set-property property="cancellable" value="true"/>
+			<forward name="add" path="/pages/Details.jsp" />
+			<forward name="cancel" path="/pages/Details.jsp" />
+        </action>
+
+		<action input="/pages/AddAsset.jsp" path="/AddAsset" name="AssetForm" scope="session" type="com.infotech.web.struts.action.AddAssetAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="add" path="/pages/Details.jsp" />
+			<forward name="cancel" path="/pages/Details.jsp" />
+        </action>
+
+		<action input="/pages/AddAsset.jsp" path="/AddLaptop" name="AssetForm" scope="session" type="com.infotech.web.struts.action.AddLaptopAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="add" path="/pages/Details.jsp" />
+			<forward name="cancel" path="/pages/Details.jsp" />
+        </action>
+
+		<action input="/pages/AssignAsset.jsp" path="/AssignAsset" name="AssignAssetForm" scope="session" type="com.infotech.web.struts.action.AssignAssetAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="assign" path="/pages/Details.jsp" />
+			<forward name="cancel" path="/pages/Details.jsp" />
+        </action>
+
+		<action input="/pages/ChangePassword.jsp" path="/ChangePassword" name="PasswordForm" scope="session" type="com.infotech.web.struts.action.ChangePasswordAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="true" path="/pages/Details.jsp" />
+			<forward name="false" path="/pages/ChangePassword.jsp" />
+			<forward name="cancel" path="/pages/Details.jsp" />
+        </action>
+        
+        
+
+		<action input="/pages/Update.jsp" path="/Update" name="UpdateForm" scope="session" type="com.infotech.web.struts.action.UpdateAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="update" path="/pages/Assets.jsp" />
+			<forward name="cancel" path="/pages/Assets.jsp" />
+        </action>
+
+		<action input="/pages/Delete.jsp" path="/Delete" name="UpdateForm" scope="session" type="com.infotech.web.struts.action.DeleteAction">
+            <set-property property="cancellable" value="true"/>
+			<forward name="delete" path="/pages/Assets.jsp" />
+			<forward name="cancel" path="/pages/Assets.jsp" />
+        </action>
+                   
+        <action path="/Welcome" forward="/welcomeStruts.jsp"/>
+    </action-mappings>
+    
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="com/infotech/MessageResources"/>
+    
+    <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+
+    Paths found in Tiles definitions are relative to the main context.
+    -->
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>

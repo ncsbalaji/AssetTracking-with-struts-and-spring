@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2011 2:27:00 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping default-lazy="false">
+    <class name="com.infotech.hibernate.Assettype" table="assettype"  dynamic-insert="true" dynamic-update="true">
+        <id name="assettypeid" type="int">
+            <column name="assettypeid" />
+            <generator class="increment" />
+        </id>
+        <property name="assettypename" type="string">
+            <column name="assettypename" length="50" />
+        </property>
+        <set name="assetdetails" inverse="true" lazy="false" table="assetdetails" fetch="select">
+            <key>
+                <column name="assettypeid" />
+            </key>
+            <one-to-many class="com.infotech.hibernate.Assetdetails" />
+        </set>       
+    </class>
+</hibernate-mapping>

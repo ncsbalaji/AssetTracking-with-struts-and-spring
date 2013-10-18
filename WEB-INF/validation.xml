@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <formset>
+		
+		<form name="LoginForm">
+            <field
+                property="ascId"
+                depends="required,mask">
+						<arg key="LoginForm.ascId"/>
+						<var>
+							<var-name>mask</var-name>
+							<var-value>^[0-9]*$</var-value>
+						</var>
+            </field>
+            <field
+                property="password"
+                depends="required,minlength">
+                    <arg0 key="LoginForm.password"/>
+                    <arg1 key="${var:minlength}" name="minlength" resource="false"/>
+                    <var>
+                        <var-name>minlength</var-name>
+                        <var-value>6</var-value>
+                    </var>
+            </field>
+        </form>
+
+ 
+
+		<form name="UserForm">
+            <field
+                property="ascId"
+                depends="required,mask,maxlength">
+                    <arg0 key="UserForm.ascId"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+							<var-name>mask</var-name>
+							<var-value>^[0-9]*$</var-value>
+						</var>
+						<var>
+                        <var-name>maxlength</var-name>
+                        <var-value>5</var-value>
+                    </var>
+            </field>
+			<field
+                property="ascName"
+                depends="required,mask,maxlength">
+                    <arg0 key="UserForm.ascName"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+							<var-name>mask</var-name>
+							<var-value>^[a-zA-Z ]+$</var-value>
+						</var>
+						<var>
+                        <var-name>maxlength</var-name>
+                        <var-value>30</var-value>
+                    </var>
+            </field>
+            <field
+                property="password"
+                depends="required,minlength,maxlength">
+                    <arg0 key="UserForm.password"/>
+                    <arg1 key="${var1:minlength}" name="minlength" resource="false"/>
+					<var>
+                        <var-name>minlength</var-name>
+                        <var-value>6</var-value>
+                    </var>
+                    <arg2 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>20</var-value>
+                    </var>
+            </field>
+			<field
+				property="emailId"
+				depends="required,mask,maxlength">
+					<arg0 key="UserForm.emailId"/>
+					<arg1 key="${var:maxlength}" name="maxlength" resource="false"/> 
+					<var>
+							<var-name>mask</var-name>
+							<var-value>^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$</var-value>
+						</var>
+						<var>
+                        <var-name>maxlength</var-name>
+                        <var-value>60</var-value>
+                    </var>
+			</field>
+			<field
+                property="verticalName"
+                depends="required,maxlength">
+                    <arg0 key="UserForm.verticalName"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>20</var-value>
+                    </var>
+            </field>
+			<field
+                property="roleId"
+                depends="required">
+                    <arg key="UserForm.roleId"/>
+            </field>
+        </form>
+
+		
+
+		<form name="LocationForm">
+            <field
+                property="floor"
+                depends="required,maxlength">
+                    <arg0 key="LocationForm.floor"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>1</var-value>
+                    </var>
+			</field>
+			<field
+                property="block"
+                depends="required,maxlength">
+                    <arg0 key="LocationForm.block"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>10</var-value>
+                    </var>
+            </field>
+           <field
+                property="phase"
+                depends="required,maxlength">
+                    <arg0 key="LocationForm.phase"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>1</var-value>
+                    </var>
+			</field>
+			<field
+                property="area"
+                depends="required,maxlength">
+                    <arg0 key="LocationForm.area"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>20</var-value>
+                    </var>
+			</field>
+			<field
+                property="city"
+                depends="required,maxlength">
+                    <arg0 key="LocationForm.city"/>
+                    <arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>20</var-value>
+                    </var>
+			</field>
+        </form>
+
+		<form name="DelForm">
+            <field
+                property="ascId"
+                depends="required">
+                    <arg key="DelForm.ascId"/>
+            </field>
+		</form>
+
+		<form name="PasswordForm">
+          <field
+                property="password1"
+                depends="required,maxlength,minlength">
+                    <arg0 key="PasswordForm.password1"/>
+                     <arg1 key="${var:minlength}" name="minlength" resource="false"/>
+                    <arg2 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>minlength</var-name>
+                        <var-value>6</var-value>
+                    </var>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>20</var-value>
+                    </var>
+            </field>
+           <field
+                property="password2"
+                depends="required,minlength,maxlength">
+                    <arg0 key="PasswordForm.password2"/>
+                    <arg1 key="${var:minlength}" name="minlength" resource="false"/>
+                    <arg2 key="${var:maxlength}" name="maxlength" resource="false"/>
+                    <var>
+                        <var-name>minlength</var-name>
+                        <var-value>6</var-value>
+                    </var>
+                    <var>
+                        <var-name>maxlength</var-name>
+                        <var-value>20</var-value>
+                    </var>
+			</field>
+			<field property="password3" 
+            depends="required, requiredif"
+             > 
+      <arg0 key="PasswordForm.password3"/>
+      <arg1 key="error.password.match"/> 
+      <var>
+        <var-name>test</var-name>
+        <var-value>((password2 == password3) and (*this* != null))</var-value>
+      </var>
+    </field>
+		</form>
+		
+		<form name="AssignAssetForm">
+			<field
+                property="ascId"
+                depends="required">
+                    <arg key="AssignAssetForm.ascId"/>
+            </field>
+            <field
+                property="assetId"
+                depends="required">
+                    <arg key="AssignAssetForm.assetId"/>
+            </field>			
+		</form>
+		
+		
+		<form name="AssetForm">
+		
+			<field
+					property="ascId"
+					depends="required,mask">
+						<arg key="AssetForm.ascId"/>
+						<var>
+							<var-name>mask</var-name>
+							<var-value>^[0-9]*$</var-value>
+						</var>
+				</field>
+				<field
+				 property="locationId"
+					depends="required">
+						<arg key="AssetForm.locationId"/>
+			</field>
+			<field
+				 property="model"
+					depends="required,maxlength">
+						<arg0 key="AssetForm.model"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="ramId"
+					depends="required,maxlength">
+						<arg0 key="AssetForm.ramId"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="computername"
+					depends="required,maxlength">
+						<arg0 key="AssetForm.computername"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+					property="ipAddress"
+					depends="required,mask,minlength">
+						<arg0 key="AssetForm.ipAddress"/>
+						<arg1 key="${var:minlength}" name="minlength" resource="false"/>
+						<var>
+							<var-name>mask</var-name>
+							<var-value>^(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4})$</var-value>
+						</var>
+						<var>
+	                        <var-name>minlength</var-name>
+	                        <var-value>9</var-value>
+	                    </var>
+				</field>
+				<field
+				 property="cpuTrackingNumber"
+					depends="required,maxlength">
+						<arg0 key="AssetForm.cpuTrackingNumber"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="monitorTrackingNumber"
+					depends="required,maxlength">
+						<arg0 key="AssetForm.monitorTrackingNumber"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="ram"
+					depends="required,integer,maxlength">
+						<arg key="AssetForm.ram"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>4</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="hardDisk"
+					depends="required,integer,maxlength">
+						<arg0 key="AssetForm.hardDisk"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>3</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="otherAssets"
+					depends="required,maxlength">
+						<arg0 key="AssetForm.otherAssets"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>50</var-value>
+	                    </var>
+			</field>
+		</form>
+		
+		<form name="UpdateForm">
+			<field
+				 property="locationId"
+					depends="required,maxlength">
+						<arg0 key="UpdateForm.locationId"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>50</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="model"
+					depends="required,maxlength">
+						<arg0 key="UpdateForm.model"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="ramId"
+					depends="required">
+						<arg key="UpdateForm.ramId"/>
+			</field>
+			<field
+				 property="computername"
+					depends="required,maxlength">
+						<arg0 key="UpdateForm.computername"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+					property="ipAddress"
+					depends="required,mask,minlength">
+						<arg0 key="UpdateForm.ipAddress"/>
+						<arg1 key="${var:minlength}" name="minlength" resource="false"/>
+						<var>
+							<var-name>mask</var-name>
+							<var-value>^(\d{1,4})\.(\d{1,4})\.(\d{1,4})\.(\d{1,4})$</var-value>
+						</var>
+						<var>
+	                        <var-name>minlength</var-name>
+	                        <var-value>9</var-value>
+	                    </var>
+				</field>
+				<field
+				 property="cpuTrackingNumber"
+					depends="required,maxlength">
+						<arg0 key="UpdateForm.cpuTrackingNumber"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="monitorTrackingNumber"
+					depends="required,maxlength">
+						<arg0 key="UpdateForm.monitorTrackingNumber"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>20</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="ram"
+					depends="required,integer,maxlength">
+						<arg0 key="UpdateForm.ram"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>4</var-value>
+	                    </var>
+			</field>
+			<field
+				 property="hardDisk"
+					depends="required,integer,maxlength">
+						<arg0 key="UpdateForm.hardDisk"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>3</var-value>
+	                    </var>
+						
+			</field>
+			<field
+				 property="otherAssets"
+					depends="required,maxlength">
+						<arg0 key="UpdateForm.otherAssets"/>
+						<arg1 key="${var:maxlength}" name="maxlength" resource="false"/>
+						<var>
+	                        <var-name>maxlength</var-name>
+	                        <var-value>50</var-value>
+	                    </var>
+			</field>
+		</form>
+		
+
+		
+
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="ascId"
+                depends="required">
+                    <arg key="LoginForm.ascId"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="LoginForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+			
+        </form>
+
+		
+
+    </formset>
+
+    <!-- An example formset for another locale -->
+    <formset language="fr">
+
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^[0-9a-zA-Z]*$</constant-value>
+        </constant>
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+
+   </formset>
+
+</form-validation>

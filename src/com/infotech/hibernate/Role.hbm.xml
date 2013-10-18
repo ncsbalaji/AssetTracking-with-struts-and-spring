@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2011 2:27:00 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping default-lazy="false">
+    <class name="com.infotech.hibernate.Role" table="role"  dynamic-insert="true" dynamic-update="true">
+        <id name="roleid" type="int">
+            <column name="roleid" />
+            <generator class="assigned" />
+        </id>
+        <property name="rolename" type="string">
+            <column name="rolename" length="20" />
+        </property>
+        <set name="login" inverse="true" lazy="false" table="login" fetch="select">
+            <key>
+                <column name="roleid" />
+            </key>
+            <one-to-many class="com.infotech.hibernate.Login" />
+        </set>
+    </class>
+</hibernate-mapping>

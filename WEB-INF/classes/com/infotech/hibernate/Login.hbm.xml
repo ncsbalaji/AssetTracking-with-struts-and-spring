@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2011 2:27:00 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping default-lazy="false">
+    <class name="com.infotech.hibernate.Login" table="login" dynamic-update="true" dynamic-insert="true">
+        <id name="ascid" type="int">
+            <column name="ascid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="role" class="com.infotech.hibernate.Role" fetch="select" lazy="false">
+            <column name="roleid" />
+        </many-to-one>
+        <property name="ascname" type="string">
+            <column name="ascname" length="50" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="250" />
+        </property>
+        <property name="emailid" type="string">
+            <column name="emailid" length="50" />
+        </property>
+        <property name="verticalname" type="string">
+            <column name="verticalname" length="20" />
+        </property>
+        <set name="assetdetails" lazy="false" table="assetdetails" fetch="select">
+            <key>
+                <column name="ascid" />
+            </key>
+            <one-to-many class="com.infotech.hibernate.Assetdetails" />
+        </set>        
+    </class>
+</hibernate-mapping>

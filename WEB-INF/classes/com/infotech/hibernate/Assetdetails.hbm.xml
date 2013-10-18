@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2011 2:27:00 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping default-lazy="false">
+    <class name="com.infotech.hibernate.Assetdetails" table="assetdetails" dynamic-update="true" dynamic-insert="true">
+        <id name="assetid" type="int">
+            <column name="assetid" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="assettype" class="com.infotech.hibernate.Assettype" fetch="select" lazy="false">
+            <column name="assettypeid" />
+        </many-to-one>
+        <many-to-one name="login" class="com.infotech.hibernate.Login" fetch="select" lazy="false">
+            <column name="ascid" />
+        </many-to-one>
+		<many-to-one name="location" class="com.infotech.hibernate.Location" fetch="select" lazy="false">
+            <column name="locationid" />
+        </many-to-one>
+        <property name="ipaddress" type="string">
+            <column name="ipaddress" length="15" />
+        </property>
+        <property name="compname" type="string">
+            <column name="compname" length="50" />
+        </property>
+        <property name="model" type="string">
+            <column name="model" length="50" />
+        </property>
+        <property name="trackingnumber" type="string">
+            <column name="trackingnumber" length="50" />
+        </property>
+        <property name="monitortrackingnumber" type="string">
+            <column name="monitortrackingnumber" length="50" />
+        </property>
+        <property name="ram" type="java.lang.Integer">
+            <column name="ram" />
+        </property>
+        <property name="harddisk" type="java.lang.Integer">
+            <column name="harddisk" />
+        </property>
+        <property name="otherassets" type="string">
+            <column name="otherassets" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

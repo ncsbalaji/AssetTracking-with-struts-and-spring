@@ -1,0 +1,35 @@
+body{ 
+margin:0; 
+padding:header-<length> 0 footer-<length> 0; 
+} 
+div#header{ 
+position:absolute; 
+top:0; 
+left:0; 
+width:100%; 
+height:header-<length>; 
+} 
+div#footer{ 
+position:absolute; 
+bottom:0%; 
+left:0; 
+width:100%; 
+height:footer-<length>; 
+} 
+@media screen{ 
+body>div#header{ 
+position:fixed; 
+} 
+body>div#footer{ 
+position:fixed; 
+} 
+} 
+
+* html body{ 
+overflow:hidden; 
+} 
+
+* html div#content{ 
+height:100%; 
+overflow:auto; 
+} 
